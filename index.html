@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business Scout AI – كشّاف الأعمال الذكي</title>
+    
+    <!-- Google Fonts: Inter (EN) + Cairo (AR) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ---------- إعادة ضبط وإعدادات عامة ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F8FAFC;
+            color: #0A2647;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* تنسيق الإنجليزي عند التبديل لها (سيتم التحكم بالـ dir) */
+        body.lang-en {
+            font-family: 'Inter', sans-serif;
+            direction: ltr;
+            text-align: left;
+        }
+        body.lang-en .ar-only {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ---------- الهيدر (Navbar) ---------- */
+        .navbar {
+            background-color: #0A2647;
+            padding: 18px 0;
+            box-shadow: 0 4px 20px rgba(10, 38, 71, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            background: #4CC9F0;
+            color: #0A2647;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            transform: rotate(-10deg);
+            box-shadow: 0 4px 10px rgba(76, 201, 240, 0.3);
+        }
+
+        .logo span {
+            color: #4CC9F0;
+        }
+
+        /* ---------- أزرار اللغة ---------- */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 4px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        body.lang-en .lang-btn {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .lang-btn:hover {
+            color: #FFFFFF;
+            background: rgba(76, 201, 240, 0.15);
+        }
+
+        .lang-btn.active {
+            background: #4CC9F0;
+            color: #0A2647;
+            box-shadow: 0 4px 12px rgba(76, 201, 240, 0.4);
+        }
+
+        /* ---------- القسم الرئيسي (Hero) ---------- */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(76, 201, 240, 0.12);
+            color: #144272;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            border: 1px solid rgba(76, 201, 240, 0.25);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            color: #0A2647;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, #4CC9F0, #144272);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #334155;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            opacity: 0.85;
+        }
+
+        /* ---------- نموذج الإدخال ---------- */
+        .form-card {
+            background: #FFFFFF;
+            border-radius: 32px;
+            padding: 40px 36px;
+            box-shadow: 0 20px 60px rgba(10, 38, 71, 0.08);
+            border: 1px solid rgba(20, 66, 114, 0.06);
+            max-width: 820px;
+            margin: 0 auto 60px;
+            transition: all 0.3s ease;
+        }
+
+        .form-card:hover {
+            box-shadow: 0 30px 80px rgba(10, 38, 71, 0.12);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #144272;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group label .required {
+            color: #FCA311;
+            font-size: 1.2rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 14px 18px;
+            border: 2px solid #E9EDF4;
+            border-radius: 16px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+            background: #F8FAFC;
+            color: #0A2647;
+            outline: none;
+            width: 100%;
+        }
+
+        body.lang-en .form-group input,
+        body.lang-en .form-group select,
+        body.lang-en .form-group textarea {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4CC9F0;
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(76, 201, 240, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* زر المسح (Scan) */
+        .btn-scan {
+            background: #0A2647;
+            color: #FFFFFF;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.lang-en .btn-scan {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-scan:hover {
+            background: #144272;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(10, 38, 71, 0.3);
+        }
+
+        .btn-scan:active {
+            transform: scale(0.97);
+        }
+
+        .btn-scan .icon {
+            font-size: 1.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .btn-scan:hover .icon {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        /* ---------- الفوتر البسيط ---------- */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(10, 38, 71, 0.06);
+            color: #94A3B8;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- التوافق مع الجوال ---------- */
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .logo {
+                justify-content: center;
+                font-size: 1.3rem;
+            }
+
+            .lang-switcher {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .lang-btn {
+                flex: 1;
+                text-align: center;
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .form-card {
+                padding: 24px 18px;
+                border-radius: 24px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .btn-scan {
+                font-size: 1rem;
+                padding: 16px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .hero {
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======== الهيدر ======== -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <div class="logo-icon">S</div>
+                Business <span>Scout</span> AI
+            </a>
+
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn active" data-lang="ar" data-dir="rtl">🇲🇦 الدارجة</button>
+                <button class="lang-btn" data-lang="ar-fu" data-dir="rtl">📖 الفصحى</button>
+                <button class="lang-btn" data-lang="en" data-dir="ltr">🇬🇧 English</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ======== المحتوى الرئيسي ======== -->
+    <main>
+        <div class="container">
+
+            <!-- القسم الترويجي -->
+            <section class="hero">
+                <div class="hero-badge" id="badgeText">🚀 كشّاف الأعمال الذكي للمغرب</div>
+                <h1 id="heroTitle">
+                    خطّط لمشروعك<br />
+                    <span class="highlight">بذكاء وكشّاف</span> واحد
+                </h1>
+                <p id="heroDesc">
+                    أدخل فكرة مشروعك، ودع وكلاءنا الأذكياء يمسحون السوق، القانون، والتمويل في دقائق.
+                </p>
+            </section>
+
+            <!-- نموذج إدخال بيانات المشروع -->
+            <section class="form-card">
+                <form id="projectForm" onsubmit="return handleScan(event)">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="projectName">اسم المشروع <span class="required">*</span></label>
+                            <input type="text" id="projectName" placeholder="مثلاً: مزرعة ذكية للطماطم" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sector">القطاع</label>
+                            <select id="sector">
+                                <option value="tech">تكنولوجيا</option>
+                                <option value="agriculture">الفلاحة</option>
+                                <option value="realestate">العقار</option>
+                                <option value="commerce">التجارة</option>
+                                <option value="industry">الصناعة</option>
+                                <option value="services">الخدمات</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">الميزانية التقريبية (درهم)</label>
+                            <input type="number" id="budget" placeholder="مثلاً: 500000" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">الجهة / المدينة</label>
+                            <input type="text" id="location" placeholder="الدار البيضاء، مراكش، ..." />
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="description">ملخص الفكرة</label>
+                            <textarea id="description" placeholder="اشرح فكرة مشروعك بإيجاز، ما هي القيمة التي ستقدمها؟"></textarea>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn-scan">
+                        <span class="icon">🔍</span>
+                        <span id="scanBtnText">اسكَن السوق الآن</span>
+                    </button>
+                </form>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ======== الفوتر ======== -->
+    <footer class="footer">
+        <div class="container">
+            <p id="footerText">© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.</p>
+        </div>
+    </footer>
+
+    <!-- ======== جافا سكريبت (التحكم في اللغة والتفاعل) ======== -->
+    <script>
+        // --- 1. نظام تبديل اللغة (ثنائي الاتجاه) ---
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const body = document.body;
+
+        // النصوص المترجمة
+        const translations = {
+            'ar': { // الدارجة
+                badge: '🚀 كشّاف الأعمال الذكي للمغرب',
+                title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشّاف</span> واحد',
+                desc: 'أدخل فكرة مشروعك، ودع وكلاءنا الأذكياء يمسحون السوق، القانون، والتمويل ف دقايق.',
+                scan: 'اسكَن السوق دابا',
+                footer: '© 2026 Business Scout AI — كنبنيو مستقبل الاستثمار ف المغرب.',
+                placeholder_name: 'مثلاً: مزرعة ذكية للطماطم',
+                placeholder_budget: 'مثلاً: 500000',
+                placeholder_location: 'الدار البيضاء، مراكش، ...',
+                placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، شني هي القيمة لي غادي تقدمها؟',
+                sector_tech: 'تكنولوجيا',
+                sector_agriculture: 'الفلاحة',
+                sector_realestate: 'العقار',
+                sector_commerce: 'التجارة',
+                sector_industry: 'الصناعة',
+                sector_services: 'الخدمات',
+            },
+            'ar-fu': { // الفصحى
+                badge: '🚀 الكشاف الذكي للأعمال في المغرب',
+                title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشاف</span> واحد',
+                desc: 'أدخل فكرة مشروعك، ودع وكلاءنا الأذكياء يمسحون السوق، القانون، والتمويل في دقائق.',
+                scan: 'امسح السوق الآن',
+                footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.',
+                placeholder_name: 'مثلاً: مزرعة ذكية للطماطم',
+                placeholder_budget: 'مثلاً: 500000',
+                placeholder_location: 'الدار البيضاء، مراكش، ...',
+                placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، ما هي القيمة التي ستقدمها؟',
+                sector_tech: 'تكنولوجيا',
+                sector_agriculture: 'الفلاحة',
+                sector_realestate: 'العقار',
+                sector_commerce: 'التجارة',
+                sector_industry: 'الصناعة',
+                sector_services: 'الخدمات',
+            },
+            'en': { // الإنجليزية
+                badge: '🚀 Smart Business Scout for Morocco',
+                title: 'Plan your project<br />with <span class="highlight">one smart Scout</span>',
+                desc: 'Enter your project idea, and let our AI agents scan the market, law, and finance in minutes.',
+                scan: 'Scan the Market Now',
+                footer: '© 2026 Business Scout AI — Building Morocco\'s investment future.',
+                placeholder_name: 'e.g., Smart Tomato Farm',
+                placeholder_budget: 'e.g., 500000',
+                placeholder_location: 'Casablanca, Marrakech, ...',
+                placeholder_desc: 'Briefly describe your project idea and the value it brings.',
+                sector_tech: 'Technology',
+                sector_agriculture: 'Agriculture',
+                sector_realestate: 'Real Estate',
+                sector_commerce: 'Commerce',
+                sector_industry: 'Industry',
+                sector_services: 'Services',
+            }
+        };
+
+        function setLanguage(lang, dir) {
+            // 1. تحديث اتجاه الصفحة (RTL/LTR)
+            body.dir = dir;
+            body.lang = lang.startsWith('ar') ? 'ar' : 'en';
+            body.className = lang.startsWith('ar') ? '' : 'lang-en';
+
+            // 2. تحديث الأزرار النشطة
+            langBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) btn.classList.add('active');
+            });
+
+            // 3. تحديث النصوص
+            const t = translations[lang];
+            if (!t) return;
+
+            document.getElementById('badgeText').innerHTML = t.badge;
+            document.getElementById('heroTitle').innerHTML = t.title;
+            document.getElementById('heroDesc').textContent = t.desc;
+            document.getElementById('scanBtnText').textContent = t.scan;
+            document.getElementById('footerText').textContent = t.footer;
+
+            // 4. تحديث أماكن النموذج (الإضافات)
+            document.getElementById('projectName').placeholder = t.placeholder_name;
+            document.getElementById('budget').placeholder = t.placeholder_budget;
+            document.getElementById('location').placeholder = t.placeholder_location;
+            document.getElementById('description').placeholder = t.placeholder_desc;
+
+            // تحديث خيارات الـ Select
+            const sectorSelect = document.getElementById('sector');
+            const options = sectorSelect.options;
+            if (options.length >= 6) {
+                options[0].text = t.sector_tech;
+                options[1].text = t.sector_agriculture;
+                options[2].text = t.sector_realestate;
+                options[3].text = t.sector_commerce;
+                options[4].text = t.sector_industry;
+                options[5].text = t.sector_services;
+            }
+        }
+
+        // إضافة مستمعات الأزرار
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                const dir = this.dataset.dir;
+                setLanguage(lang, dir);
+            });
+        });
+
+        // تعيين اللغة الافتراضية (الدارجة) عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            // تأكد من أن الزر النشط هو "الدارجة"
+            const defaultBtn = document.querySelector('.lang-btn[data-lang="ar"]');
+            if (defaultBtn) {
+                setLanguage('ar', 'rtl');
+            }
+        });
+
+        // --- 2. معالجة زر "اسكَن السوق" (محاكاة مؤقتة) ---
+        function handleScan(event) {
+            event.preventDefault(); // لمنع إعادة تحميل الصفحة
+
+            const name = document.getElementById('projectName').value.trim();
+            if (!name) {
+                alert('⚠️ من فضلك، أدخل اسم المشروع قبل المسح!');
+                return false;
+            }
+
+            // محاكاة تفاعلية رائعة
+            const btn = document.querySelector('.btn-scan');
+            const originalText = document.getElementById('scanBtnText').textContent;
+            const icon = btn.querySelector('.icon');
+
+            // تغيير النص والإيقونة أثناء "المسح"
+            document.getElementById('scanBtnText').textContent = '🔄 جاري المسح...';
+            icon.textContent = '⏳';
+            btn.style.opacity = '
