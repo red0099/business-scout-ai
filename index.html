@@ -71,7 +71,7 @@
             <section class="form-card">
                 <form id="projectForm" onsubmit="return handleScan(event)">
                     <div class="form-grid">
-                        <div class="form-group"><label for="projectName">اسم المشروع <span class="required">*</span></label><input type="text" id="projectName" placeholder="مثلاً: مزرعة ذكية للطماطم" required /></div>
+                        <div class="form-group"><label for="projectName">اسم المشروع <span class="required">*</span></label><input type="text" id="projectName" placeholder="مثلاً: مزرعة دواجن ذكية" required /></div>
                         <div class="form-group"><label for="sector">القطاع</label><select id="sector"><option value="تكنولوجيا">تكنولوجيا</option><option value="الفلاحة">الفلاحة</option><option value="العقار">العقار</option><option value="التجارة">التجارة</option><option value="الصناعة">الصناعة</option><option value="الخدمات">الخدمات</option></select></div>
                         <div class="form-group"><label for="budget">الميزانية التقريبية (درهم)</label><input type="number" id="budget" placeholder="مثلاً: 500000" /></div>
                         <div class="form-group"><label for="location">الجهة / المدينة</label><input type="text" id="location" placeholder="الدار البيضاء، مراكش، ..." /></div>
@@ -94,9 +94,9 @@
         const langBtns = document.querySelectorAll('.lang-btn');
         const body = document.body;
         const translations = {
-            'ar': { badge: '🚀 كشّاف الأعمال الذكي للمغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشّاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'اسكَن السوق دابا', footer: '© 2026 Business Scout AI — كنبنيو مستقبل الاستثمار ف المغرب.', placeholder_name: 'مثلاً: مزرعة ذكية للطماطم', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، شني هي القيمة لي غادي تقدمها؟' },
-            'ar-fu': { badge: '🚀 الكشاف الذكي للأعمال في المغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'امسح السوق الآن', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مزرعة ذكية للطماطم', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، ما هي القيمة التي ستقدمها؟' },
-            'en': { badge: '🚀 Smart Business Scout for Morocco', title: 'Plan your project<br />with <span class="highlight">one smart Scout</span>', desc: 'Enter your project idea, and let our expert consultants prepare a professional feasibility study.', scan: 'Scan the Market Now', footer: '© 2026 Business Scout AI — Building Morocco\'s investment future.', placeholder_name: 'e.g., Smart Tomato Farm', placeholder_budget: 'e.g., 500000', placeholder_location: 'Casablanca, Marrakech, ...', placeholder_desc: 'Briefly describe your project idea and the value it brings.' }
+            'ar': { badge: '🚀 كشّاف الأعمال الذكي للمغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشّاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'اسكَن السوق دابا', footer: '© 2026 Business Scout AI — كنبنيو مستقبل الاستثمار ف المغرب.', placeholder_name: 'مثلاً: مزرعة دواجن ذكية', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، شني هي القيمة لي غادي تقدمها؟' },
+            'ar-fu': { badge: '🚀 الكشاف الذكي للأعمال في المغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'امسح السوق الآن', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مزرعة دواجن ذكية', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، ما هي القيمة التي ستقدمها؟' },
+            'en': { badge: '🚀 Smart Business Scout for Morocco', title: 'Plan your project<br />with <span class="highlight">one smart Scout</span>', desc: 'Enter your project idea, and let our expert consultants prepare a professional feasibility study.', scan: 'Scan the Market Now', footer: '© 2026 Business Scout AI — Building Morocco\'s investment future.', placeholder_name: 'e.g., Smart Poultry Farm', placeholder_budget: 'e.g., 500000', placeholder_location: 'Casablanca, Marrakech, ...', placeholder_desc: 'Briefly describe your project idea and the value it brings.' }
         };
         function setLanguage(lang, dir) {
             body.dir = dir; body.lang = lang.startsWith('ar') ? 'ar' : 'en'; body.className = lang.startsWith('ar') ? '' : 'lang-en';
@@ -137,9 +137,9 @@
             const location = document.getElementById('location').value || 'غير محدد';
             const description = document.getElementById('description').value || 'لا يوجد وصف تفصيلي';
 
-            // 🔥 التعليمات السحرية الجديدة لتحليل ميزانية المعدات والمصاريف اليومية
+            // 🔥🔥🔥 التعليمات السحرية المحسّنة جداً (Prompt Engineering)
             const prompt = `
-            أنت خبير مالي واقتصادي مخضرم، ومستشار دراسات جدوى معتمد في السوق المغربي.
+            أنت خبير مالي واستشاري أعمال معتمد، تعمل في مكتب دراسات جدوى مشهور في المغرب.
             المطلوب منك إعداد تقرير دراسة جدوى احترافي جداً، بالأرقام والتقديرات الواقعية، لصاحب مشروع جاد.
 
             بيانات المشروع:
@@ -149,37 +149,45 @@
             - المدينة: ${location}
             - تفاصيل الفكرة: ${description}
 
-            قم بصياغة التقرير باللغة العربية الفصحى، وفق الهيكل التالي بدقة، وقدم أرقاماً تقديرية واقعية بناءً على معرفتك بالسوق المغربي:
+            قم بصياغة التقرير باللغة العربية الفصحى، وفق الهيكل التالي بدقة، مع تقديم أرقام تقديرية واقعية بناءً على معرفتك بالسوق المغربي.
+            استخدم علامات الترقيم والنقاط والأرقام لتوضيح المعلومات.
 
             **1. الملخص التنفيذي:**
-            (خلاصة المشروع والقيمة المضافة في سطرين).
+            (اكتب فقرة قصيرة لا تتجاوز 3 أسطر تلخص فكرة المشروع وجدواه).
 
             **2. هيكل التكاليف الاستثمارية (المعدات والبنية التحتية):**
-            - قائمة تفصيلية بأهم المعدات المطلوبة مع تقدير سعر كل منها بالدرهم المغربي.
-            - (مثال: ثلاجات، آلات، تجهيزات تقنية، أثاث، تكاليف التشغيل الأولية).
-            - المجموع الإجمالي للتكاليف الثابتة (المعدات).
+            اكتب جدولاً بسيطاً يحتوي على 5 إلى 8 بنود أساسية مع الأسعار التقديرية بالدرهم المغربي.
+            مثال:
+            - قطعة أرض / إيجار سنوي: 50,000 درهم
+            - تجهيزات فلاحية (مضخات، أنظمة ري): 80,000 درهم
+            - شراء الدواجن / الأعلاف: 30,000 درهم
+            - تجهيزات ذكية (حساسات، كاميرات): 40,000 درهم
+            - تكاليف تركيب وتشغيل أولية: 20,000 درهم
+            - المجموع الإجمالي للتكاليف الثابتة: (اجمعها).
 
             **3. المصاريف التشغيلية الشهرية / اليومية:**
-            - الكراء الشهري (تقدير حسب مدينة ${location}).
+            احسب التالي وقدّر الأرقام:
+            - الكراء الشهري (قدر حسب مدينة ${location}).
             - فواتير الكهرباء والماء والإنترنت.
-            - الرواتب الشهرية للعمال/المستخدمين.
-            - تكاليف المواد الأولية أو البضائع.
+            - الرواتب الشهرية (عدد العمال × متوسط الأجر).
+            - تكاليف المواد الأولية الشهرية.
             - المصاريف التسويقية والإعلانية.
-            - احتساب إجمالي المصاريف الشهرية المتوقعة.
+            - إجمالي المصاريف الشهرية المتوقعة.
 
             **4. التوقعات المالية والأرباح:**
-            - تقدير الإيرادات الشهرية المتوقعة بناءً على القطاع (${sector}).
-            - هامش الربح الصافي الشهري (الإيرادات - المصاريف).
-            - حساب نقطة التعادل: كم شهر يحتاج المشروع لتغطية كامل التكاليف الاستثمارية والعودة بالربح الأول؟
+            - كم تتوقع أن تكون الإيرادات الشهرية؟ (قدر بناءً على القطاع ${sector}).
+            - هامش الربح الصافي الشهري = (الإيرادات - المصاريف).
+            - احسب نقطة التعادل: كم شهر يحتاج المشروع لتغطية كامل التكاليف الاستثمارية والعودة بالربح الأول؟
 
-            **5. تحليل نقاط القوة والضعف والفرص والمخاطر (SWOT) مخصص للمشروع:**
-            - ذكر 3 نقاط قوة، 3 نقاط ضعف، 3 فرص، و3 مخاطر مع حلولها المقترحة.
+            **5. تحليل نقاط القوة والضعف والفرص والمخاطر (SWOT):**
+            اذكر 3 نقاط قوة، 3 نقاط ضعف، 3 فرص خارجية، و3 مخاطر مع حلولها المقترحة.
 
             **6. التوصية النهائية للمستثمر:**
             - هل تنصح بالمضي قدماً؟ ولماذا؟
-            - اقتراح 3 خطوات تنفيذية عملية لبدء المشروع الشهر القادم.
+            - اقترح 3 خطوات تنفيذية عملية لبدء المشروع خلال الشهر القادم.
 
-            كن واقعياً جداً في الأرقام، ولا تكتفِ بالعموميات. قدم التقرير كما لو كنت تقدمه لمجلس إدارة.
+            كن واقعياً جداً في الأرقام، ولا تكتفِ بالعموميات. قدم التقرير كما لو كنت تقدمه لمجلس إدارة شركة استثمارية.
+            **تذكر: العميل يريد أرقاماً دقيقة، وليس مجرد كلام عام.**
             `;
 
             try {
@@ -189,11 +197,11 @@
                     body: JSON.stringify({
                         model: 'llama-3.3-70b-versatile',
                         messages: [
-                            { role: 'system', content: 'أنت خبير مالي واستشاري أعمال مخضرم، معروف بدقتك في التقديرات المالية وتحليل السوق المغربي.' },
+                            { role: 'system', content: 'أنت خبير مالي واستشاري أعمال مخضرم، معروف بدقتك في التقديرات المالية وتحليل السوق المغربي. أجب دائماً بجدول وأرقام.' },
                             { role: 'user', content: prompt }
                         ],
-                        temperature: 0.3,  // حرارة منخفضة للحصول على إجابات أكثر دقة وواقعية وأقل عشوائية
-                        max_tokens: 2500   // تقرير طويل جداً يحتوي على كل التفاصيل المالية
+                        temperature: 0.5,  // زيادة الحرارة قليلاً للحصول على إجابات أكثر إبداعاً وتفصيلاً
+                        max_tokens: 3000   // تقرير طويل جداً يحتوي على كل التفاصيل المالية
                     })
                 });
 
@@ -224,4 +232,4 @@
         }
     </script>
 </body>
-    </html>          
+                                                                                                                                                                            </html>
