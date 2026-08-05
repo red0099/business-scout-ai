@@ -77,111 +77,136 @@
                         <div class="form-group"><label for="location">الجهة / المدينة</label><input type="text" id="location" placeholder="الدار البيضاء، مراكش، ..." /></div>
                         <div class="form-group full-width"><label for="description">ملخص الفكرة</label><textarea id="description" placeholder="اشرح فكرة مشروعك بإيجاز"></textarea></div>
                     </div>
-                    <button type="submit" class="btn-scan" id="scanBtn"><span class="icon">🔍</span><span id="scanBtnText">اسكَن السوق الآن</span></button>
-                </form>
-            </section>
-            <div class="result-box" id="resultBox"><h3>📊 تقرير دراسة الجدوى الاستشارية <span>AI</span></h3><div class="result-content" id="resultContent">سيظهر هنا تقريرك بعد تحليل السوق.</div></div>
-        </div>
-    </main>
-    <footer class="footer"><div class="container"><p id="footerText">© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.</p></div></footer>
-    <script>
--        let API_KEY = localStorage.getItem('groq_api_key');
--        if (!API_KEY) {
--            API_KEY = prompt('🔑 أدخل مفتاح Groq API الخاص بك (سيُحفظ محلياً في متصفحك):');
--            if (API_KEY) localStorage.setItem('groq_api_key', API_KEY);
--            else alert('⚠️ لا يمكن استخدام التطبيق بدون مفتاح API.');
--        }
+-                    <button type="submit" class="btn-scan" id="scanBtn"><span class="icon">🔍</span><span id="scanBtnText">اسكَن السوق الآن</span></button>
++                    <button type="submit" class="btn-scan" id="scanBtn" aria-live="polite" aria-busy="false">
++                        <span class="icon">
++                            <span class="search-icon" aria-hidden="true">🔍</span>
++                            <span class="spinner" aria-hidden="true"></span>
++                        </span>
++                        <span id="scanBtnText">اسكَن السوق الآن</span>
++                    </button>
+                 </form>
+             </section>
+             <div class="result-box" id="resultBox"><h3>📊 تقرير دراسة الجدوى الاستشارية <span>AI</span></h3><div class="result-content" id="resultContent">سيظهر هنا تقريرك بعد تحليل السوق.</div></div>
+         </div>
+     </main>
+     <footer class="footer"><div class="container"><p id="footerText">© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.</p></div></footer>
+     <script>
+-        // Security: API key is handled server-side. Do not collect or store it in the browser.
 +        // Security: API key is handled server-side. Do not collect or store it in the browser.
          const langBtns = document.querySelectorAll('.lang-btn');
          const body = document.body;
          const translations = {
-             'ar': { badge: '🚀 كشّاف الأعمال الذكي للمغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشّاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'اسكَن السوق الآن', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مشروع مقهى صغير', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز' },
-             'ar-fu': { badge: '🚀 الكشاف الذكي للأعمال في المغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'ابدأ التحليل', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مشروع محل تجاري', placeholder_budget: 'مثلاً: 300000', placeholder_location: 'الرباط، أكادير، ...', placeholder_desc: 'أعطِ وصفاً مختصراً لفكرتك' },
-             'en': { badge: '🚀 Smart Business Scout for Morocco', title: 'Plan your project<br />with <span class="highlight">one smart Scout</span>', desc: 'Enter your project idea, and let our expert consultants prepare a professional feasibility study with numbers.', scan: 'Run Scan', footer: '© 2026 Business Scout AI — Building the future of investment in Morocco.', placeholder_name: 'e.g. small cafe project', placeholder_budget: 'e.g. 500000', placeholder_location: 'Casablanca, Marrakech, ...', placeholder_desc: 'Briefly describe your project idea' }
-         };
-         function setLanguage(lang, dir) {
-             body.dir = dir; body.lang = lang.startsWith('ar') ? 'ar' : 'en'; body.className = lang.startsWith('ar') ? '' : 'lang-en';
-             langBtns.forEach(btn => { btn.classList.remove('active'); if (btn.dataset.lang === lang) btn.classList.add('active'); });
-             const t = translations[lang]; if (!t) return;
-             document.getElementById('badgeText').innerHTML = t.badge;
-             document.getElementById('heroTitle').innerHTML = t.title;
-             document.getElementById('heroDesc').textContent = t.desc;
-             document.getElementById('scanBtnText').textContent = t.scan;
-             document.getElementById('footerText').textContent = t.footer;
-             document.getElementById('projectName').placeholder = t.placeholder_name;
-             document.getElementById('budget').placeholder = t.placeholder_budget;
-             document.getElementById('location').placeholder = t.placeholder_location;
-             document.getElementById('description').placeholder = t.placeholder_desc;
-         }
-         langBtns.forEach(btn => { btn.addEventListener('click', function() { setLanguage(this.dataset.lang, this.dataset.dir); }); });
-         document.addEventListener('DOMContentLoaded', () => { const defaultBtn = document.querySelector('.lang-btn[data-lang="ar"]'); if (defaultBtn) setLanguage('ar', 'rtl'); });
-
-         async function handleScan(event) {
-             event.preventDefault();
--            if (!API_KEY) { alert('❌ لا يوجد مفتاح API. يرجى تحديث الصفحة وإدخال المفتاح.'); return false; }
+@@
+-        .loading-dots::after { content: ''; animation: dots 1.5s steps(4, end) infinite; }
++        .loading-dots::after { content: ''; animation: dots 1.5s steps(4, end) infinite; }
++
++        /* Scan button spinner and loading state */
++        .btn-scan { position: relative; display: inline-flex; align-items: center; gap: 10px; }
++        .btn-scan .icon { display: inline-flex; align-items: center; justify-content: center; width: 1.6em; height: 1.6em; }
++        .btn-scan .search-icon { display: inline-block; line-height: 1; }
++        .btn-scan .spinner { display: none; width: 1.1em; height: 1.1em; border: 3px solid rgba(255,255,255,0.28); border-top-color: #FFFFFF; border-radius: 50%; box-sizing: border-box; }
++        .btn-scan.loading { opacity: 0.95; pointer-events: none; }
++        .btn-scan.loading .spinner { display: inline-block; animation: spin 0.9s linear infinite; }
++        .btn-scan.loading .search-icon { display: none; }
++        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
++        @media (max-width:768px) { .btn-scan .spinner { width: 1.0em; height: 1.0em; border-width: 2.5px; } }
+         @keyframes dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } 100% { content: ''; } }
+     </style>
+ </head>
+ <body>
+@@
+-            // Loading state
+-            btn.disabled = true;
+-            btnText.textContent = '🔄 جاري إعداد التقرير...';
+-            icon.textContent = '⏳';
+-            btn.style.opacity = '0.8';
++            // Loading state
++            btn.disabled = true;
++            btn.classList.add('loading');
++            btn.setAttribute('aria-busy', 'true');
++            btnText.textContent = '⏳ جاري تحليل المشروع...';
+@@
+-            try {
+-                const response = await fetch('/.netlify/functions/scan', {
+-                    method: 'POST',
+-                    headers: { 'Content-Type': 'application/json' },
+-                    body: JSON.stringify({ name, sector, budget, location, description })
+-                });
 -
--            const name = document.getElementById('projectName').value.trim();
-+            const name = document.getElementById('projectName').value.trim();
-             if (!name) { alert('⚠️ من فضلك، أدخل اسم المشروع قبل المسح!'); return false; }
-
-             const btn = document.getElementById('scanBtn');
-             const btnText = document.getElementById('scanBtnText');
-             const icon = btn.querySelector('.icon');
-             const originalText = btnText.textContent;
-
-             // Loading state
-             btn.disabled = true;
-             btnText.textContent = '🔄 جاري إعداد التقرير...';
-             icon.textContent = '⏳';
-             btn.style.opacity = '0.8';
-
-             const sector = document.getElementById('sector').value;
-             const budget = document.getElementById('budget').value || 'غير محدد';
-             const location = document.getElementById('location').value || 'غير محدد';
-             const description = document.getElementById('description').value || 'لا يوجد وصف تفصيلي';
-
-             try {
-                 const response = await fetch('/.netlify/functions/scan', {
-                     method: 'POST',
-                     headers: { 'Content-Type': 'application/json' },
--                    body: JSON.stringify({ apiKey: API_KEY, name, sector, budget, location, description })
+-                const text = await response.text();
+-                let data;
+-                try { data = JSON.parse(text); } catch (e) { throw new Error('استجابة غير صالحة من الخادم'); }
+-
+-                if (!response.ok) {
+-                    const serverMessage = data?.error || data?.message || 'خطأ غير متوقع من الخادم';
+-                    throw new Error(serverMessage);
+-                }
+-
+-                const resultBox = document.getElementById('resultBox');
+-                const resultContent = document.getElementById('resultContent');
+-
+-                const markdownReport = data.report || (Array.isArray(data.sections) ? data.sections.map(s => `## ${s.name}\n\n${s.content || ''}`).join('\n\n') : '');
+-                resultContent.textContent = markdownReport || 'لا توجد مخرجات متاحة.';
+-
+-                if (Array.isArray(data.errors) && data.errors.length > 0) {
+-                    console.warn('Agent errors:', data.errors);
+-                    alert('⚠️ بعض الوكلاء لم ينجحوا بالكامل — تحقق من وحدة التحكم للاطلاع على التفاصيل.');
+-                }
+-
+-                resultBox.classList.add('visible');
+-                resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+-
+-            } catch (error) {
+-                console.error('خطأ أثناء اتصال المسح:', error);
+-                alert(`❌ حدث خطأ أثناء التحليل: ${error.message || 'خطأ غير معروف'}`);
+-            } finally {
+-                btn.disabled = false;
+-                btnText.textContent = originalText;
+-                icon.textContent = '🔍';
+-                btn.style.opacity = '1';
+-            }
++            try {
++                const response = await fetch('/.netlify/functions/scan', {
++                    method: 'POST',
++                    headers: { 'Content-Type': 'application/json' },
 +                    body: JSON.stringify({ name, sector, budget, location, description })
-                 });
-
-                 const text = await response.text();
-                 let data;
-                 try { data = JSON.parse(text); } catch (e) { throw new Error('استجابة غير صالحة من الخادم'); }
-
-                 if (!response.ok) {
-                     const serverMessage = data?.error || data?.message || 'خطأ غير متوقع من الخادم';
-                     throw new Error(serverMessage);
-                 }
-
-                 const resultBox = document.getElementById('resultBox');
-                 const resultContent = document.getElementById('resultContent');
-
-                 const markdownReport = data.report || (Array.isArray(data.sections) ? data.sections.map(s => `## ${s.name}\n\n${s.content || ''}`).join('\n\n') : '');
-                 resultContent.textContent = markdownReport || 'لا توجد مخرجات متاحة.';
-
-                 if (Array.isArray(data.errors) && data.errors.length > 0) {
-                     console.warn('Agent errors:', data.errors);
-                     alert('⚠️ بعض الوكلاء لم ينجحوا بالكامل — تحقق من وحدة التحكم للاطلاع على التفاصيل.');
-                 }
-
-                 resultBox.classList.add('visible');
-                 resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-             } catch (error) {
-                 console.error('خطأ أثناء اتصال المسح:', error);
-                 alert(`❌ حدث خطأ أثناء التحليل: ${error.message || 'خطأ غير معروف'}`);
-             } finally {
-                 btn.disabled = false;
-                 btnText.textContent = originalText;
-                 icon.textContent = '🔍';
-                 btn.style.opacity = '1';
-             }
++                });
++
++                const text = await response.text();
++                let data;
++                try { data = JSON.parse(text); } catch (e) { throw new Error('استجابة غير صالحة من الخادم'); }
++
++                if (!response.ok) {
++                    const serverMessage = data?.error || data?.message || 'خطأ غير متوقع من الخادم';
++                    throw new Error(serverMessage);
++                }
++
++                const resultBox = document.getElementById('resultBox');
++                const resultContent = document.getElementById('resultContent');
++
++                const markdownReport = data.report || (Array.isArray(data.sections) ? data.sections.map(s => `## ${s.name}\n\n${s.content || ''}`).join('\n\n') : '');
++                resultContent.textContent = markdownReport || 'لا توجد مخرجات متاحة.';
++
++                if (Array.isArray(data.errors) && data.errors.length > 0) {
++                    console.warn('Agent errors:', data.errors);
++                    alert('⚠️ بعض الوكلاء لم ينجحوا بالكامل — تحقق من وحدة التحكم للاطلاع على التفاصيل.');
++                }
++
++                resultBox.classList.add('visible');
++                resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
++
++            } catch (error) {
++                console.error('خطأ أثناء اتصال المسح:', error);
++                alert(`❌ حدث خطأ أثناء التحليل: ${error.message || 'خطأ غير معروف'}`);
++            } finally {
++                btn.disabled = false;
++                btn.classList.remove('loading');
++                btn.removeAttribute('aria-busy');
++                btnText.textContent = originalText;
++            }
              return false;
          }
      </script>
-</body>
-</html>
+ </body>
+ </html>
