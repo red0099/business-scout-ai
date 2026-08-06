@@ -1,102 +1,73 @@
-import MarketAgent from '../agents/market.js';
-import FinancialAgent from '../agents/financial.js';
-import CompetitorAgent from '../agents/competitor.js';
-import { aiChat } from './aiRouter.js';
-import { DEFAULT_MODEL } from '../config/config.js';
+// services/agentRunner.js
+// Dynamically discovers and runs all agents in the agents/ directory.
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const AGENTS_DIR = path.join(__dirname, '../agents');
 
 /**
- * Build a Markdown report from structured sections.
- * @param {Array<{id:string,name:string,content:string,meta?:object}>} sections
- * @returns {string} Markdown string
- */
-export function buildMarkdownFromSections(sections = []) {
-  const now = new Date().toISOString();
-  const parts = [];
-  parts.push(`# تقرير دراسة الجدوى — Business Scout AI`);
-  parts.push(`_تاريخ الإنشاء: ${now}_`);
-  parts.push(`\n---\n`);
-  parts.push(`## الملخّص التنفيذي`);
-  parts.push(`هذا التقرير يجمع مخرجات الوكلاء: Market, Financial, Competitor. التفاصيل أدناه.`);
-  parts.push(`\n---\n`);
-
-  for (const s of sections) {
-    parts.push(`## ${s.name}`);
-    parts.push(s.content || '_لا توجد مخرجات من هذا القسم._');
-    parts.push('\n');
-  }
-
-  parts.push('---');
-  parts.push('_تولّد هذا التقرير تلقائيًا بواسطة Business Scout AI._');
-  return parts.join('\n\n');
-}
-
-/**
- * Run configured agents in parallel and return a structured report object.
+ * Run all agents concurrently and return their results.
+ * Each agent module must export a default async function(payload, ctx) returning
+ * { success, title, content, data, errors }
  *
- * @param {object} payload - The input payload for agents (project details)
- * @param {object} [options] - Runner options
- * @param {string} [options.apiKey] - API key for the AI provider (overrides env)
- * @param {string} [options.model] - Model to use (overrides config default)
- * @returns {Promise<{success:boolean, report:string, sections:Array, errors:Array}>}
+ * @param {object} payload
+ * @param {object} options
  */
 export async function runAgents(payload = {}, options = {}) {
   const apiKey = options.apiKey || process.env.GROQ_API_KEY;
-  if (!apiKey) {
-    throw new Error('Missing API key for agent runner. Provide options.apiKey or set GROQ_API_KEY in env.');
+  const model = options.model || process.env.DEFAULT_MODEL || 'default';
+
+  const ctx = { apiKey, model };
+
+  let files = [];
+  try {
+    files = fs.readdirSync(AGENTS_DIR).filter(f => f.endsWith('.js'));
+  } catch (err) {
+    console.error('agentRunner: failed to read agents directory', err?.stack || err);
+    return { agents: [], error: 'agents_dir_unavailable' };
   }
 
-  const model = options.model || DEFAULT_MODEL;
-
-  const agents = [
-    { id: MarketAgent.id || 'market', name: MarketAgent.name || 'Market Agent', run: MarketAgent.run.bind(MarketAgent) },
-    { id: FinancialAgent.id || 'financial', name: FinancialAgent.name || 'Financial Agent', run: FinancialAgent.run.bind(FinancialAgent) },
-    { id: CompetitorAgent.id || 'competitor', name: CompetitorAgent.name || 'Competitor Agent', run: CompetitorAgent.run.bind(CompetitorAgent) }
-  ];
-
-  const ctx = { aiChat, apiKey, model };
-
-  // Run all agents in parallel and collect results; continue even if some fail
-  const promises = agents.map(agent => (async () => {
+  const promises = files.map(async (file) => {
+    const id = file.replace(/\.js$/, '');
+    const fullPath = path.join(AGENTS_DIR, file);
     try {
-      const result = await agent.run(payload, ctx);
-      return { id: agent.id, name: agent.name, ok: true, result };
+      const mod = await import(pathToFileURL(fullPath).href);
+      const fn = mod && (mod.default || mod.run || mod);
+      if (typeof fn !== 'function') {
+        return { id, success: false, title: id, content: '', data: null, errors: ['agent_not_function'] };
+      }
+      try {
+        const out = await fn(payload, ctx);
+        // Ensure shape
+        return {
+          id,
+          success: !!out && out.success === true,
+          title: out?.title || id,
+          content: out?.content || '',
+          data: out?.data || null,
+          errors: Array.isArray(out?.errors) ? out.errors : (out?.errors ? [out.errors] : [])
+        };
+      } catch (err) {
+        console.error(`agentRunner: agent ${id} failed`, err?.stack || err);
+        return { id, success: false, title: id, content: '', data: null, errors: [String(err?.message || err)] };
+      }
     } catch (err) {
-      return { id: agent.id, name: agent.name, ok: false, error: err?.message || String(err) };
+      console.error(`agentRunner: failed to import ${file}`, err?.stack || err);
+      return { id, success: false, title: id, content: '', data: null, errors: [String(err?.message || err)] };
     }
-  })());
+  });
 
-  const settledResults = await Promise.allSettled(promises);
+  const settled = await Promise.allSettled(promises);
+  const agents = settled.map((s, idx) => {
+    if (s.status === 'fulfilled') return s.value;
+    const file = files[idx];
+    const id = file ? file.replace(/\.js$/, '') : `agent_${idx}`;
+    return { id, success: false, title: id, content: '', data: null, errors: [String(s.reason || 'rejected')] };
+  });
 
-  const sections = [];
-  const errors = [];
-
-  // settledResults are {status, value|reason}
-  for (let i = 0; i < settledResults.length; i++) {
-    const sr = settledResults[i];
-    let res;
-    if (sr.status === 'fulfilled') {
-      res = sr.value;
-    } else {
-      // If a promise unexpectedly rejected, mark the agent as failed
-      const agent = agents[i];
-      res = { id: agent.id, name: agent.name, ok: false, error: String(sr.reason) };
-    }
-
-    if (res.ok) {
-      const content = (res.result && (res.result.content || (res.result.rawProviderResponse && (res.result.rawProviderResponse.choices?.[0]?.message?.content || res.result.rawProviderResponse.choices?.[0]?.text)))) || '';
-      sections.push({ id: res.id, name: res.name, content, meta: res.result.meta || {} });
-    } else {
-      errors.push({ id: res.id, name: res.name, error: res.error });
-    }
-  }
-
-  const markdown = buildMarkdownFromSections(sections);
-  const success = errors.length === 0;
-
-  return {
-    success,
-    report: markdown,
-    sections,
-    errors
-  };
+  return { agents };
 }
