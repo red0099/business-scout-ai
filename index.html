@@ -15,27 +15,27 @@
         .navbar { background-color: #0A2647; padding: 18px 0; box-shadow: 0 4px 20px rgba(10,38,71,0.15); position: sticky; top: 0; z-index: 100; }
         .navbar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .logo { display: flex; align-items: center; gap: 10px; color: #FFFFFF; text-decoration: none; font-weight: 800; font-size: 1.5rem; }
-        .logo-icon { background: #4CC9F0; color: #0A2647; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; transform: rotate(-10deg); box-shadow: 0 4px 10px rgba(76,201,240,0.3); }
+        .logo-icon { background: #4CC9F0; color: #0A2647; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight:800 }
         .logo span { color: #4CC9F0; }
         .lang-switcher { display: flex; gap: 6px; background: rgba(255,255,255,0.08); padding: 4px; border-radius: 50px; }
-        .lang-btn { background: transparent; border: none; color: rgba(255,255,255,0.6); padding: 8px 18px; border-radius: 30px; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease; }
+        .lang-btn { background: transparent; border: none; color: rgba(255,255,255,0.6); padding: 8px 18px; border-radius: 30px; font-family: 'Cairo', sans-serif; font-weight: 700; font-size: 0.85rem; }
         .lang-btn:hover { color: #FFFFFF; background: rgba(76,201,240,0.15); }
         .lang-btn.active { background: #4CC9F0; color: #0A2647; box-shadow: 0 4px 12px rgba(76,201,240,0.4); }
         .hero { padding: 60px 0 40px; text-align: center; }
-        .hero-badge { display: inline-block; background: rgba(76,201,240,0.12); color: #144272; padding: 6px 20px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; margin-bottom: 24px; border: 1px solid rgba(76,201,240,0.25); }
+        .hero-badge { display: inline-block; background: rgba(76,201,240,0.12); color: #144272; padding: 6px 20px; border-radius: 50px; font-weight: 600; font-size: 0.85rem; margin-bottom: 24px; }
         .hero h1 { font-size: clamp(2.2rem,5vw,3.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 16px; color: #0A2647; }
         .hero h1 .highlight { background: linear-gradient(135deg,#4CC9F0,#144272); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .hero p { font-size: 1.2rem; color: #334155; max-width: 650px; margin: 0 auto 40px; opacity: 0.85; }
-        .form-card { background: #FFFFFF; border-radius: 32px; padding: 40px 36px; box-shadow: 0 20px 60px rgba(10,38,71,0.08); border: 1px solid rgba(20,66,114,0.06); max-width: 820px; margin: 0 auto 30px; transition: all 0.3s ease; }
+        .form-card { background: #FFFFFF; border-radius: 32px; padding: 40px 36px; box-shadow: 0 20px 60px rgba(10,38,71,0.08); border: 1px solid rgba(20,66,114,0.06); max-width: 820px; margin: 0 auto 30px; }
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group { display: flex; flex-direction: column; gap: 6px; }
         .form-group.full-width { grid-column: 1 / -1; }
         .form-group label { font-weight: 600; font-size: 0.9rem; color: #144272; }
         .form-group label .required { color: #FCA311; font-size: 1.2rem; }
-        .form-group input, .form-group select, .form-group textarea { padding: 14px 18px; border: 2px solid #E9EDF4; border-radius: 16px; font-family: 'Cairo', sans-serif; font-size: 1rem; transition: all 0.25s ease; background: #F8FAFC; color: #0A2647; outline: none; width: 100%; }
+        .form-group input, .form-group select, .form-group textarea { padding: 14px 18px; border: 2px solid #E9EDF4; border-radius: 16px; font-family: 'Cairo', sans-serif; font-size: 1rem; transition: all 0.18s ease; }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #4CC9F0; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(76,201,240,0.15); }
         .form-group textarea { resize: vertical; min-height: 100px; }
-        .btn-scan { background: #0A2647; color: #FFFFFF; border: none; padding: 18px 40px; border-radius: 60px; font-weight: 700; font-size: 1.2rem; font-family: 'Cairo', sans-serif; cursor: pointer; transition: all 0.3s ease; width: 100%; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .btn-scan { background: #0A2647; color: #FFFFFF; border: none; padding: 18px 40px; border-radius: 60px; font-weight: 700; font-size: 1.2rem; font-family: 'Cairo', sans-serif; cursor: pointer; }
         .btn-scan:hover { background: #144272; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(10,38,71,0.3); }
         .btn-scan:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
         .btn-scan .icon { font-size: 1.5rem; }
@@ -43,11 +43,39 @@
         .result-box.visible { display: block; }
         .result-box h3 { color: #0A2647; font-size: 1.3rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
         .result-box h3 span { background: #4CC9F0; color: #0A2647; padding: 0 12px; border-radius: 20px; font-size: 0.8rem; }
-        .result-content { background: #F8FAFC; padding: 20px; border-radius: 16px; white-space: pre-wrap; word-wrap: break-word; color: #1E293B; line-height: 1.8; max-height: 600px; overflow-y: auto; font-size: 0.95rem; }
+        .result-content { background: #F8FAFC; padding: 20px; border-radius: 16px; white-space: pre-wrap; word-wrap: break-word; color: #1E293B; line-height: 1.8; max-height: 600px; overflow-y: auto; }
         .footer { margin-top: auto; text-align: center; padding: 30px 0; border-top: 1px solid rgba(10,38,71,0.06); color: #94A3B8; font-size: 0.9rem; }
-        @media (max-width:768px) { .navbar .container { flex-direction: column; align-items: stretch; gap: 12px; } .logo { justify-content: center; font-size: 1.3rem; } .lang-switcher { justify-content: center; width: 100%; } .lang-btn { flex: 1; text-align: center; padding: 8px 10px; font-size: 0.75rem; } .form-grid { grid-template-columns: 1fr; gap: 16px; } .form-card { padding: 24px 18px; border-radius: 24px; } .hero h1 { font-size: 2rem; } .btn-scan { font-size: 1rem; padding: 16px 24px; } }
+        @media (max-width:768px) { .navbar .container { flex-direction: column; align-items: stretch; gap: 12px; } .logo { justify-content: center; font-size: 1.3rem; } .lang-switcher { justify-content: center; } .form-grid { grid-template-columns: 1fr; } }
         .loading-dots::after { content: ''; animation: dots 1.5s steps(4, end) infinite; }
         @keyframes dots { 0% { content: ''; } 25% { content: '.'; } 50% { content: '..'; } 75% { content: '...'; } 100% { content: ''; } }
+
+        /* Scan button spinner and loading state */
+        .btn-scan { position: relative; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-scan .icon { display: inline-flex; align-items: center; justify-content: center; width: 1.6em; height: 1.6em; }
+        .btn-scan .search-icon { display: inline-block; line-height: 1; }
+        .btn-scan .spinner { display: none; width: 1.1em; height: 1.1em; border: 3px solid rgba(255,255,255,0.28); border-top-color: #FFFFFF; border-radius: 50%; box-sizing: border-box; }
+        .btn-scan.loading { opacity: 0.95; pointer-events: none; }
+        .btn-scan.loading .spinner { display: inline-block; animation: spin 0.9s linear infinite; }
+        .btn-scan.loading .search-icon { display: none; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @media (max-width:768px) { .btn-scan .spinner { width: 1.0em; height: 1.0em; border-width: 2.5px; } }
+
+        /* Similar businesses cards */
+        .similar-section { margin: 20px auto; max-width: 820px; background: #FFFFFF; border-radius: 16px; padding: 18px; border: 1px solid #E9EDF4; box-shadow: 0 8px 20px rgba(10,38,71,0.04); }
+        .similar-section h3 { font-size: 1.1rem; margin-bottom: 12px; color: #0A2647; display:flex; align-items:center; gap:10px; }
+        .similar-toolbar { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+        .similar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .similar-card { background:#F8FAFC; border-radius:12px; padding:12px; display:flex; flex-direction:column; gap:8px; box-shadow: 0 6px 16px rgba(10,38,71,0.03); }
+        .similar-card .title { font-weight:700; color:#0A2647; font-size:0.98rem; }
+        .similar-card .type { color:#0A2647; font-size:0.9rem; font-weight:600; }
+        .similar-card .address { color:#334155; font-size:0.88rem; line-height:1.3; min-height:2.2em; }
+        .similar-card .coords { color:#64748B; font-size:0.82rem; }
+        .similar-card .distance { color:#0A2647; font-size:0.9rem; font-weight:700; }
+        .similar-card .links { margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; }
+        .similar-card .links a { background:#0A2647; color:#fff; padding:6px 8px; border-radius:8px; text-decoration:none; font-size:0.82rem; }
+        .similar-message { color:#64748B; padding:12px; text-align:center; }
+        @media (max-width:900px) { .similar-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width:480px) { .similar-grid { grid-template-columns: 1fr; } .similar-section { padding:12px; } }
     </style>
 </head>
 <body>
@@ -71,32 +99,51 @@
             <section class="form-card">
                 <form id="projectForm" onsubmit="return handleScan(event)">
                     <div class="form-grid">
-                        <div class="form-group"><label for="projectName">اسم المشروع <span class="required">*</span></label><input type="text" id="projectName" placeholder="مثلاً: مزرعة دواجن ذكية" required /></div>
-                        <div class="form-group"><label for="sector">القطاع</label><select id="sector"><option value="تكنولوجيا">تكنولوجيا</option><option value="الفلاحة">الفلاحة</option><option value="العقار">العقار</option><option value="التجارة">التجارة</option><option value="الصناعة">الصناعة</option><option value="الخدمات">الخدمات</option></select></div>
+                        <div class="form-group"><label for="projectName">اسم المشروع <span class="required">*</span></label><input type="text" id="projectName" placeholder="مثلاً: مشروع مقهى صغير" /></div>
+                        <div class="form-group"><label for="sector">القطاع</label><select id="sector"><option value="تكنولوجيا">تكنولوجيا</option><option value="الفلاحة">الفلاحة</option><option value="التجارة">التجارة</option><option value="الخدمات">الخدمات</option></select></div>
+                        <div class="form-group"><label for="activityType">نوع النشاط (اختياري)</label><input type="text" id="activityType" placeholder="مثل: مقهى، دواجن، عسل، مطعم، صيدلية" /></div>
                         <div class="form-group"><label for="budget">الميزانية التقريبية (درهم)</label><input type="number" id="budget" placeholder="مثلاً: 500000" /></div>
                         <div class="form-group"><label for="location">الجهة / المدينة</label><input type="text" id="location" placeholder="الدار البيضاء، مراكش، ..." /></div>
-                        <div class="form-group full-width"><label for="description">ملخص الفكرة</label><textarea id="description" placeholder="اشرح فكرة مشروعك بإيجاز، ما هي القيمة التي ستقدمها؟"></textarea></div>
+                        <div class="form-group full-width"><label for="description">ملخص الفكرة</label><textarea id="description" placeholder="اشرح فكرة مشروعك بإيجاز"></textarea></div>
                     </div>
-                    <button type="submit" class="btn-scan" id="scanBtn"><span class="icon">🔍</span><span id="scanBtnText">اسكَن السوق الآن</span></button>
+                    <div style="display:flex;gap:10px;margin-top:12px;align-items:center;">
+                        <button type="submit" class="btn-scan" id="scanBtn" aria-live="polite" aria-busy="false">
+                            <span class="icon">
+                                <span class="search-icon" aria-hidden="true">🔍</span>
+                                <span class="spinner" aria-hidden="true"></span>
+                            </span>
+                            <span id="scanBtnText">اسكَن السوق الآن</span>
+                        </button>
+                        <button type="button" id="useLocationBtn" class="btn-scan" style="background:#4CC9F0;padding:12px 18px;font-size:0.95rem;">📍 استخدم موقعي الحالي</button>
+                    </div>
                 </form>
             </section>
-            <div class="result-box" id="resultBox"><h3>📊 تقرير دراسة الجدوى الاستشارية <span>AI</span></h3><div class="result-content" id="resultContent">سيظهر هنا التحليل المالي واللوجستي العميق...</div></div>
+            <div class="result-box" id="resultBox"><h3>📊 تقرير دراسة الجدوى الاستشارية <span>AI</span></h3><div class="result-content" id="resultContent">سيظهر هنا تقريرك بعد تحليل السوق.</div></div>
+
+            <!-- Similar businesses section (populated after scan) -->
+            <section class="similar-section" id="similarSection" aria-live="polite" style="display:none;">
+                <h3>📍 المشاريع المشابهة بالقرب منك</h3>
+                <div class="similar-toolbar">
+                    <div style="flex:1;color:#64748B;font-size:0.95rem;">أقرب 10 نتائج بحسب المسافة</div>
+                    <div id="similarLoading" style="color:#0A2647;display:none;">🔄 جارٍ البحث...</div>
+                </div>
+                <div id="similarContainer" class="similar-grid">
+                    <!-- cards inserted here -->
+                </div>
+                <div id="similarMessage" class="similar-message" style="display:none;">لم يتم العثور على مشاريع مشابهة.</div>
+            </section>
+
         </div>
     </main>
     <footer class="footer"><div class="container"><p id="footerText">© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.</p></div></footer>
     <script>
-        let API_KEY = localStorage.getItem('groq_api_key');
-        if (!API_KEY) {
-            API_KEY = prompt('🔑 أدخل مفتاح Groq API الخاص بك (سيُحفظ محلياً في متصفحك):');
-            if (API_KEY) localStorage.setItem('groq_api_key', API_KEY);
-            else alert('⚠️ لا يمكن استخدام التطبيق بدون مفتاح API.');
-        }
+        // Security: API key is handled server-side. Do not collect or store it in the browser.
         const langBtns = document.querySelectorAll('.lang-btn');
         const body = document.body;
         const translations = {
-            'ar': { badge: '🚀 كشّاف الأعمال الذكي للمغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشّاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'اسكَن السوق دابا', footer: '© 2026 Business Scout AI — كنبنيو مستقبل الاستثمار ف المغرب.', placeholder_name: 'مثلاً: مزرعة دواجن ذكية', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، شني هي القيمة لي غادي تقدمها؟' },
-            'ar-fu': { badge: '🚀 الكشاف الذكي للأعمال في المغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'امسح السوق الآن', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مزرعة دواجن ذكية', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز، ما هي القيمة التي ستقدمها؟' },
-            'en': { badge: '🚀 Smart Business Scout for Morocco', title: 'Plan your project<br />with <span class="highlight">one smart Scout</span>', desc: 'Enter your project idea, and let our expert consultants prepare a professional feasibility study.', scan: 'Scan the Market Now', footer: '© 2026 Business Scout AI — Building Morocco\'s investment future.', placeholder_name: 'e.g., Smart Poultry Farm', placeholder_budget: 'e.g., 500000', placeholder_location: 'Casablanca, Marrakech, ...', placeholder_desc: 'Briefly describe your project idea and the value it brings.' }
+            'ar': { badge: '🚀 كشّاف الأعمال الذكي للمغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشّاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'اسكَن السوق الآن', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مشروع مقهى صغير', placeholder_budget: 'مثلاً: 500000', placeholder_location: 'الدار البيضاء، مراكش، ...', placeholder_desc: 'اشرح فكرة مشروعك بإيجاز' },
+            'ar-fu': { badge: '🚀 الكشاف الذكي للأعمال في المغرب', title: 'خطّط لمشروعك<br /><span class="highlight">بذكاء وكشاف</span> واحد', desc: 'أدخل فكرة مشروعك، ودع فريق الخبراء الاستشاريين يعد لك دراسة جدوى احترافية بالأرقام.', scan: 'ابدأ التحليل', footer: '© 2026 Business Scout AI — نبني مستقبل الاستثمار في المغرب.', placeholder_name: 'مثلاً: مشروع محل تجاري', placeholder_budget: 'مثلاً: 300000', placeholder_location: 'الرباط، أكادير، ...', placeholder_desc: 'أعطِ وصفاً مختصراً لفكرتك' },
+            'en': { badge: '🚀 Smart Business Scout for Morocco', title: 'Plan your project<br />with <span class="highlight">one smart Scout</span>', desc: 'Enter your project idea, and let our expert consultants prepare a professional feasibility study with numbers.', scan: 'Run Scan', footer: '© 2026 Business Scout AI — Building the future of investment in Morocco.', placeholder_name: 'e.g. small cafe project', placeholder_budget: 'e.g. 500000', placeholder_location: 'Casablanca, Marrakech, ...', placeholder_desc: 'Briefly describe your project idea' }
         };
         function setLanguage(lang, dir) {
             body.dir = dir; body.lang = lang.startsWith('ar') ? 'ar' : 'en'; body.className = lang.startsWith('ar') ? '' : 'lang-en';
@@ -115,121 +162,315 @@
         langBtns.forEach(btn => { btn.addEventListener('click', function() { setLanguage(this.dataset.lang, this.dataset.dir); }); });
         document.addEventListener('DOMContentLoaded', () => { const defaultBtn = document.querySelector('.lang-btn[data-lang="ar"]'); if (defaultBtn) setLanguage('ar', 'rtl'); });
 
+        // Session cache key helper
+        function cacheKey(type, lat, lon, query) {
+            return `similar:${type || 'any'}:${lat?.toFixed(5) || 'na'}:${lon?.toFixed(5) || 'na'}:${(query||'').toLowerCase()}`;
+        }
+
+        // Haversine distance in kilometers
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            function toRad(v){return v * Math.PI/180;}
+            const R = 6371; // km
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lon2 - lon1);
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        // Map common Arabic activity keywords to possible OSM tags / English synonyms
+        const ACTIVITY_SYNONYMS = {
+            'مقهى': ['cafe','coffee_shop','cafe'],
+            'مطعم': ['restaurant','restaurant'],
+            'صيدلية': ['pharmacy','pharmacy'],
+            'دواجن': ['poultry','farm','poultry_farm','farm'],
+            'عسل': ['apiary','beekeeping','farm'],
+            'متجر': ['shop','retail','store'],
+            'متجر صغير': ['shop','retail'],
+            'فندق': ['hotel','guest_house','lodging'],
+            'ورشة': ['workshop','repair'],
+            'مخبز': ['bakery','bakery'],
+            'سوبرماركت': ['supermarket','grocery','supermarket']
+        };
+
+        // Try to build keyword list from activityType or projectName and sector
+        function buildSearchKeywords(activityType, projectName, sector) {
+            const keywords = [];
+            if (activityType) keywords.push(activityType.trim());
+            // extract simple tokens from projectName
+            if (projectName) {
+                const parts = projectName.split(/\s|[-_]/).map(p=>p.trim()).filter(Boolean);
+                keywords.push(...parts.slice(0,3));
+            }
+            // sector fallback
+            if (sector) keywords.push(sector);
+            // expand synonyms for Arabic activity terms
+            const expanded = [];
+            for (const k of keywords) {
+                if (ACTIVITY_SYNONYMS[k]) expanded.push(...ACTIVITY_SYNONYMS[k]);
+                else expanded.push(k);
+            }
+            // add some generic categories
+            expanded.push('shop','store','business','service');
+            return Array.from(new Set(expanded)).slice(0,20);
+        }
+
+        // Geocode location string to {lat,lon} using Nominatim
+        async function geocodeLocation(location) {
+            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}&limit=1`;
+            const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+            const data = await res.json();
+            if (!Array.isArray(data) || data.length === 0) return null;
+            return { lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) };
+        }
+
+        // Overpass search by keywords around lat/lon
+        async function overpassSearchByKeywords(lat, lon, keywords, radius = 5000, limit = 50) {
+            // build a regex for name or amenity/shop tags
+            const nameRegex = keywords.map(k=>k.replace(/"/g,'')).join('|');
+            const q = `
+[out:json][timeout:25];
+(
+  node(around:${radius},${lat},${lon})[name~"${nameRegex}",i];
+  way(around:${radius},${lat},${lon})[name~"${nameRegex}",i];
+  relation(around:${radius},${lat},${lon})[name~"${nameRegex}",i];
+  node(around:${radius},${lat},${lon})[amenity~"${nameRegex}",i];
+  node(around:${radius},${lat},${lon})[shop~"${nameRegex}",i];
+);
+out center ${limit};`;
+            const resp = await fetch('https://overpass-api.de/api/interpreter', { method: 'POST', headers: {'Content-Type':'application/x-www-form-urlencoded'}, body: q });
+            const data = await resp.json();
+            return data.elements || [];
+        }
+
+        // escape HTML
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"]+/g, function(s){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s];});
+        }
+
+        // Main function to fetch similar businesses
+        async function fetchSimilarBusinesses(projectName, locationStr, activityType=null, useCoords=null) {
+            const container = document.getElementById('similarContainer');
+            const section = document.getElementById('similarSection');
+            const message = document.getElementById('similarMessage');
+            const loading = document.getElementById('similarLoading');
+            container.innerHTML = '';
+            message.style.display = 'none';
+            section.style.display = 'block';
+            loading.style.display = 'inline';
+
+            let baseLat = null, baseLon = null;
+            if (useCoords && useCoords.lat && useCoords.lon) {
+                baseLat = useCoords.lat; baseLon = useCoords.lon;
+            } else {
+                // geocode location string
+                if (!locationStr) {
+                    loading.style.display = 'none';
+                    message.textContent = 'الرجاء تحديد المدينة أو السماح بالوصول للموقع.';
+                    message.style.display = 'block';
+                    return;
+                }
+                const geocode = await geocodeLocation(locationStr).catch(()=>null);
+                if (!geocode) {
+                    loading.style.display = 'none';
+                    message.textContent = 'تعذر تحديد الموقع. الرجاء تحديد المدينة بوضوح أو السماح بالوصول للموقع.';
+                    message.style.display = 'block';
+                    return;
+                }
+                baseLat = geocode.lat; baseLon = geocode.lon;
+            }
+
+            // Build keywords
+            const keywords = buildSearchKeywords(activityType, projectName, document.getElementById('sector').value);
+            const cacheK = cacheKey(activityType || projectName, baseLat, baseLon, keywords.join(','));
+            // session cache
+            try {
+                const cached = sessionStorage.getItem(cacheK);
+                if (cached) {
+                    const parsed = JSON.parse(cached);
+                    renderSimilarResults(parsed, baseLat, baseLon);
+                    loading.style.display = 'none';
+                    return;
+                }
+            } catch(e){/*ignore*/}
+
+            // attempt searches: first by keywords, then fallback synonyms if empty
+            let elements = [];
+            try {
+                elements = await overpassSearchByKeywords(baseLat, baseLon, keywords, 5000, 50);
+            } catch (err) {
+                console.error('خطأ في استعلام Overpass:', err);
+            }
+
+            // If empty, attempt fallback: try synonyms mapped from activityType
+            if (!elements.length) {
+                const fallbacks = [];
+                if (activityType && ACTIVITY_SYNONYMS[activityType]) fallbacks.push(...ACTIVITY_SYNONYMS[activityType]);
+                // also try some generic English categories
+                fallbacks.push('shop','store','service','restaurant','cafe','pharmacy','bakery','market','fuel');
+                try {
+                    elements = await overpassSearchByKeywords(baseLat, baseLon, fallbacks, 8000, 100);
+                } catch (err) {
+                    console.error('خطأ في استعلام Overpass (fallback):', err);
+                }
+            }
+
+            if (!elements.length) {
+                loading.style.display = 'none';
+                message.textContent = 'لم يتم العثور على مشاريع مشابهة.';
+                message.style.display = 'block';
+                return;
+            }
+
+            // Transform elements into result objects with coords and tags
+            const results = elements.map(el=>{
+                const tags = el.tags || {};
+                const lat = el.lat || (el.center && el.center.lat) || null;
+                const lon = el.lon || (el.center && el.center.lon) || null;
+                return {
+                    id: el.id,
+                    type: el.type,
+                    name: tags.name || '—',
+                    activity: tags.amenity || tags.shop || tags.business || activityType || '—',
+                    address: (tags['addr:street'] ? tags['addr:street'] + (tags['addr:housenumber'] ? ' ' + tags['addr:housenumber'] : '') : '') + (tags['addr:city'] ? ', ' + tags['addr:city'] : '') || (tags['addr:full'] || tags['address'] || '—'),
+                    lat, lon
+                };
+            }).filter(r=>r.lat && r.lon);
+
+            // compute distances
+            for (const r of results) {
+                r.distance = haversineDistance(baseLat, baseLon, r.lat, r.lon);
+            }
+            // sort by distance
+            results.sort((a,b)=>a.distance - b.distance);
+            const nearest = results.slice(0,10);
+
+            // cache in sessionStorage
+            try { sessionStorage.setItem(cacheK, JSON.stringify(nearest)); } catch(e){/*ignore*/}
+
+            renderSimilarResults(nearest, baseLat, baseLon);
+            loading.style.display = 'none';
+        }
+
+        function renderSimilarResults(results, baseLat, baseLon) {
+            const container = document.getElementById('similarContainer');
+            const message = document.getElementById('similarMessage');
+            container.innerHTML = '';
+            message.style.display = 'none';
+
+            for (const r of results) {
+                const osmLink = r.type && r.id ? `https://www.openstreetmap.org/${r.type}/${r.id}` : `https://www.openstreetmap.org/?mlat=${r.lat}&mlon=${r.lon}#map=18/${r.lat}/${r.lon}`;
+                const gmaps = `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lon}`;
+                const card = document.createElement('div');
+                card.className = 'similar-card';
+                card.innerHTML = `
+                    <div class="title">${escapeHtml(r.name)}</div>
+                    <div class="type">${escapeHtml(r.activity)}</div>
+                    <div class="address">${escapeHtml(r.address)}</div>
+                    <div class="coords">${r.lat.toFixed(5)} , ${r.lon.toFixed(5)}</div>
+                    <div class="distance">المسافة: ${r.distance ? r.distance.toFixed(2) : '—'} كم</div>
+                    <div class="links">
+                        <a href="${gmaps}" target="_blank" rel="noopener noreferrer">Google Maps</a>
+                        <a href="${osmLink}" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        // Hook up Use My Current Location button
+        document.getElementById('useLocationBtn').addEventListener('click', () => {
+            if (!navigator.geolocation) {
+                alert('المتصفح لا يدعم الوصول إلى الموقع.');
+                return;
+            }
+            const btn = document.getElementById('useLocationBtn');
+            btn.disabled = true;
+            btn.textContent = 'جارٍ الحصول على الموقع...';
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                btn.disabled = false; btn.textContent = '📍 استخدم موقعي الحالي';
+                const coords = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+                // initiate a search using current coords if a report already shown
+                const name = document.getElementById('projectName').value.trim();
+                const activity = document.getElementById('activityType').value.trim();
+                fetchSimilarBusinesses(name, null, activity || null, coords);
+            }, (err) => {
+                btn.disabled = false; btn.textContent = '📍 استخدم موقعي الحالي';
+                alert('تعذر الحصول على الموقع. يرجى التحقق من إعدادات المتصفح أو تحديد المدينة يدوياً.');
+            }, { enableHighAccuracy: true, timeout: 10000 });
+        });
+
         async function handleScan(event) {
             event.preventDefault();
-            if (!API_KEY) { alert('❌ لا يوجد مفتاح API. يرجى تحديث الصفحة وإدخال المفتاح.'); return false; }
-
             const name = document.getElementById('projectName').value.trim();
             if (!name) { alert('⚠️ من فضلك، أدخل اسم المشروع قبل المسح!'); return false; }
 
             const btn = document.getElementById('scanBtn');
             const btnText = document.getElementById('scanBtnText');
-            const icon = btn.querySelector('.icon');
             const originalText = btnText.textContent;
 
+            // Loading state
             btn.disabled = true;
-            btnText.textContent = '🔄 جاري إعداد التقرير المالي العميق...';
-            icon.textContent = '⏳';
-            btn.style.opacity = '0.8';
+            btn.classList.add('loading');
+            btn.setAttribute('aria-busy', 'true');
+            btnText.textContent = '⏳ جاري تحليل المشروع...';
 
             const sector = document.getElementById('sector').value;
+            const activity = document.getElementById('activityType').value.trim() || null;
             const budget = document.getElementById('budget').value || 'غير محدد';
             const location = document.getElementById('location').value || 'غير محدد';
             const description = document.getElementById('description').value || 'لا يوجد وصف تفصيلي';
 
-            // 🔥🔥🔥 التعليمات السحرية المحسّنة جداً (Prompt Engineering)
-            const prompt = `
-            أنت خبير مالي واستشاري أعمال معتمد، تعمل في مكتب دراسات جدوى مشهور في المغرب.
-            المطلوب منك إعداد تقرير دراسة جدوى احترافي جداً، بالأرقام والتقديرات الواقعية، لصاحب مشروع جاد.
-
-            بيانات المشروع:
-            - الاسم: ${name}
-            - القطاع: ${sector}
-            - الميزانية الإجمالية التقريبية: ${budget} درهم
-            - المدينة: ${location}
-            - تفاصيل الفكرة: ${description}
-
-            قم بصياغة التقرير باللغة العربية الفصحى، وفق الهيكل التالي بدقة، مع تقديم أرقام تقديرية واقعية بناءً على معرفتك بالسوق المغربي.
-            استخدم علامات الترقيم والنقاط والأرقام لتوضيح المعلومات.
-
-            **1. الملخص التنفيذي:**
-            (اكتب فقرة قصيرة لا تتجاوز 3 أسطر تلخص فكرة المشروع وجدواه).
-
-            **2. هيكل التكاليف الاستثمارية (المعدات والبنية التحتية):**
-            اكتب جدولاً بسيطاً يحتوي على 5 إلى 8 بنود أساسية مع الأسعار التقديرية بالدرهم المغربي.
-            مثال:
-            - قطعة أرض / إيجار سنوي: 50,000 درهم
-            - تجهيزات فلاحية (مضخات، أنظمة ري): 80,000 درهم
-            - شراء الدواجن / الأعلاف: 30,000 درهم
-            - تجهيزات ذكية (حساسات، كاميرات): 40,000 درهم
-            - تكاليف تركيب وتشغيل أولية: 20,000 درهم
-            - المجموع الإجمالي للتكاليف الثابتة: (اجمعها).
-
-            **3. المصاريف التشغيلية الشهرية / اليومية:**
-            احسب التالي وقدّر الأرقام:
-            - الكراء الشهري (قدر حسب مدينة ${location}).
-            - فواتير الكهرباء والماء والإنترنت.
-            - الرواتب الشهرية (عدد العمال × متوسط الأجر).
-            - تكاليف المواد الأولية الشهرية.
-            - المصاريف التسويقية والإعلانية.
-            - إجمالي المصاريف الشهرية المتوقعة.
-
-            **4. التوقعات المالية والأرباح:**
-            - كم تتوقع أن تكون الإيرادات الشهرية؟ (قدر بناءً على القطاع ${sector}).
-            - هامش الربح الصافي الشهري = (الإيرادات - المصاريف).
-            - احسب نقطة التعادل: كم شهر يحتاج المشروع لتغطية كامل التكاليف الاستثمارية والعودة بالربح الأول؟
-
-            **5. تحليل نقاط القوة والضعف والفرص والمخاطر (SWOT):**
-            اذكر 3 نقاط قوة، 3 نقاط ضعف، 3 فرص خارجية، و3 مخاطر مع حلولها المقترحة.
-
-            **6. التوصية النهائية للمستثمر:**
-            - هل تنصح بالمضي قدماً؟ ولماذا؟
-            - اقترح 3 خطوات تنفيذية عملية لبدء المشروع خلال الشهر القادم.
-
-            كن واقعياً جداً في الأرقام، ولا تكتفِ بالعموميات. قدم التقرير كما لو كنت تقدمه لمجلس إدارة شركة استثمارية.
-            **تذكر: العميل يريد أرقاماً دقيقة، وليس مجرد كلام عام.**
-            `;
-
             try {
-                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                const response = await fetch('/.netlify/functions/scan', {
                     method: 'POST',
-                    headers: { 'Authorization': `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        model: 'llama-3.3-70b-versatile',
-                        messages: [
-                            { role: 'system', content: 'أنت خبير مالي واستشاري أعمال مخضرم، معروف بدقتك في التقديرات المالية وتحليل السوق المغربي. أجب دائماً بجدول وأرقام.' },
-                            { role: 'user', content: prompt }
-                        ],
-                        temperature: 0.5,  // زيادة الحرارة قليلاً للحصول على إجابات أكثر إبداعاً وتفصيلاً
-                        max_tokens: 3000   // تقرير طويل جداً يحتوي على كل التفاصيل المالية
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, sector, budget, location, description })
                 });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error?.message || 'فشل الاتصال بالذكاء الاصطناعي');
-                }
+                const text = await response.text();
+                let data;
+                try { data = JSON.parse(text); } catch (e) { throw new Error('استجابة غير صالحة من الخادم'); }
 
-                const data = await response.json();
-                const aiResponse = data.choices?.[0]?.message?.content || 'لم أحصل على رد من الذكاء الاصطناعي.';
+                if (!response.ok) {
+                    const serverMessage = data?.error || data?.message || 'خطأ غير متوقع من الخادم';
+                    throw new Error(serverMessage);
+                }
 
                 const resultBox = document.getElementById('resultBox');
                 const resultContent = document.getElementById('resultContent');
-                resultContent.textContent = aiResponse;
+
+                const markdownReport = data.report || (Array.isArray(data.sections) ? data.sections.map(s => `## ${s.name}\n\n${s.content || ''}`).join('\n\n') : '');
+                resultContent.textContent = markdownReport || 'لا توجد مخرجات متاحة.';
+
+                if (Array.isArray(data.errors) && data.errors.length > 0) {
+                    console.warn('Agent errors:', data.errors);
+                    alert('⚠️ بعض الوكلاء لم ينجحوا بالكامل — تحقق من وحدة التحكم للاطلاع على التفاصيل.');
+                }
+
                 resultBox.classList.add('visible');
                 resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+                // After displaying report, fetch similar businesses (use entered location)
+                try {
+                    const useCoords = null; // will be set if user used geolocation
+                    fetchSimilarBusinesses(name, document.getElementById('location').value || null, activity, useCoords);
+                } catch (e) {
+                    console.error('خطأ في جلب المشاريع المشابهة:', e);
+                }
+
             } catch (error) {
-                console.error('خطأ:', error);
-                alert(`❌ حدث خطأ أثناء التحليل: ${error.message}`);
+                console.error('خطأ أثناء اتصال المسح:', error);
+                alert(`❌ حدث خطأ أثناء التحليل: ${error.message || 'خطأ غير معروف'}`);
             } finally {
                 btn.disabled = false;
+                btn.classList.remove('loading');
+                btn.removeAttribute('aria-busy');
                 btnText.textContent = originalText;
-                icon.textContent = '🔍';
-                btn.style.opacity = '1';
             }
             return false;
         }
     </script>
 </body>
-                                                                                                                                                                            </html>
+</html>
