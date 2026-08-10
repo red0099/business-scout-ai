@@ -1,1 +1,17 @@
 
+{
+  "version": 2,
+  "outputDirectory": ".",
+  "builds": [
+    {
+      "src": "services/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "services/server.js"
+    }
+  ]
+}
