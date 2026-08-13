@@ -3,3 +3,9 @@ node_modules/
 .env.*
 .DS_Store
 .vercel
+
+# Logs and backup files
+*.log
+*.bak
+*.backup
+*.safe-backup
