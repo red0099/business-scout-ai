@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Scout AI</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1120;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 25px;
+      text-align: center;
+      background: #111827;
+      border-bottom: 1px solid #26334d;
+    }
+
+    h1 { margin: 0; }
+    header p { color: #9ca3af; }
+
+    main {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #26334d;
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0 15px;
+      border-radius: 10px;
+      border: 1px solid #374151;
+      background: #0b1120;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: 0;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #0b1120;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🔎 Business Scout AI</h1>
+    <p>Discover and analyze businesses with AI</p>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Find a Business</h2>
+
+      <input id="business" placeholder="Enter a business or category...">
+
+      <button onclick="searchBusiness()">🚀 Search</button>
+
+      <div id="result">Ready to search...</div>
+    </div>
+  </main>
+
+  <script>
+    async function searchBusiness() {
+      const business = document.getElementById("business").value.trim();
+      const result = document.getElementById("result");
+
+      if (!business) {
+        result.textContent = "Please enter a business or category.";
+        return;
+      }
+
+      result.textContent = "🔄 Searching...";
+
+      try {
+        const response = await fetch("/");
+        const data = await response.json();
+
+        result.textContent =
+          "✅ API connected\n\n" +
+          "Search: " + business + "\n\n" +
+          JSON.stringify(data, null, 2);
+      } catch (error) {
+        result.textContent = "❌ Connection error: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
