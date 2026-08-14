@@ -1,4 +1,20 @@
-export async function executePipeline(url) {
+export
+function parseModelContent(content) {
+  let s = String(content ?? '').trim();
+  s = s.replace(/^\`\`\`(?:json)?\s*/i, '');
+  s = s.replace(/\s*\`\`\`$/i, '');
+
+  const start = s.indexOf('{');
+  const end = s.lastIndexOf('}');
+
+  if (start >= 0 && end > start) {
+    s = s.slice(start, end + 1);
+  }
+
+  return JSON.parse(s);
+}
+
+async function executePipeline(url) {
   console.log("🚀 بدء تحليل المشروع:", url);
 
   try {
