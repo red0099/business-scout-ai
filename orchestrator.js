@@ -14,7 +14,7 @@ function parseModelContent(content) {
   return JSON.parse(s);
 }
 
-async function executePipeline(url) {
+export async function executePipeline(url) {
   console.log("🚀 بدء تحليل المشروع:", url);
 
   try {
